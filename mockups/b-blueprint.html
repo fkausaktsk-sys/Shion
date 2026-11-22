@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시안 B · 블루프린트 — 시온건설</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* 시안 B: 밝은 바탕 + 깊은 남색 + 신호 파랑. 설계도 격자와 이미지가 열리는 모션 */
+:root {
+  --bg: #f5f6f8; --paper: #ffffff; --ink: #0e1b2c; --muted: #5d6b7c; --line: #dfe3e9;
+  --blue: #1f5eff; --navy: #0e1b2c;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: "Pretendard Variable", Pretendard, system-ui, sans-serif; word-break: keep-all; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+.wrap { width: min(1240px, 100% - 40px); margin: 0 auto; }
+/* 설계도 격자 배경 */
+.grid-bg { background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 48px 48px; }
+
+header { position: sticky; top: 0; z-index: 50; background: rgba(245,246,248,.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -.02em; }
+.logo svg { width: 28px; height: 28px; }
+.menu { display: flex; gap: 6px; }
+.menu a { padding: 10px 16px; border-radius: 8px; font-size: 15px; color: var(--muted); transition: background .25s, color .25s; }
+.menu a:hover { background: var(--paper); color: var(--ink); }
+.call { background: var(--navy); color: #fff; padding: 11px 18px; border-radius: 8px; font-weight: 700; font-size: 14px; display: flex; gap: 8px; align-items: center; }
+.call::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 0 0 #3ddc84; animation: pulse 2s infinite; }
+@keyframes pulse { 70% { box-shadow: 0 0 0 8px transparent; } }
+
+/* 첫 화면: 왼쪽 글, 오른쪽 사진이 열리며 등장 */
+.hero { padding: 72px 0 96px; }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; }
+.tag { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; font-weight: 700; color: var(--blue); background: #e8efff; padding: 8px 12px; border-radius: 99px; }
+.hero h1 { font-size: clamp(40px, 5.6vw, 80px); line-height: 1.08; letter-spacing: -.045em; font-weight: 800; margin: 22px 0 22px; }
+.hero h1 mark { background: none; color: var(--blue); position: relative; }
+.hero h1 mark::after { content: ""; position: absolute; left: 0; right: 0; bottom: .06em; height: .14em; background: var(--blue); opacity: .18; transform: scaleX(0); transform-origin: left; animation: under 1s .9s forwards cubic-bezier(.2,.8,.2,1); }
+@keyframes under { to { transform: none; } }
+.hero p { color: var(--muted); font-size: 18px; line-height: 1.7; max-width: 480px; }
+.btns { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+.btn { padding: 16px 24px; border-radius: 10px; font-weight: 700; }
+.btn.primary { background: var(--blue); color: #fff; }
+.btn.ghost { border: 1px solid var(--line); background: var(--paper); }
+.hero-img { position: relative; aspect-ratio: 4/3.4; border-radius: 20px; overflow: hidden; clip-path: inset(0 0 100% 0 round 20px); animation: open 1.3s .2s forwards cubic-bezier(.7,0,.2,1); }
+.hero-img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.2); animation: settle 1.8s .2s forwards cubic-bezier(.2,.8,.2,1); }
+@keyframes open { to { clip-path: inset(0 0 0 0 round 20px); } }
+@keyframes settle { to { transform: scale(1); } }
+.badge { position: absolute; left: 20px; bottom: 20px; background: var(--paper); border-radius: 14px; padding: 16px 18px; box-shadow: 0 12px 40px rgba(14,27,44,.18); display: flex; gap: 14px; align-items: center; opacity: 0; transform: translateY(20px); animation: badge .8s 1.3s forwards; }
+@keyframes badge { to { opacity: 1; transform: none; } }
+.badge b { font-size: 28px; letter-spacing: -.03em; color: var(--blue); }
+.badge span { font-size: 13px; color: var(--muted); line-height: 1.4; }
+
+/* 숫자 */
+.numbers { background: var(--navy); color: #fff; padding: 64px 0; }
+.numbers .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.num b { display: block; font-size: clamp(34px, 4vw, 54px); font-weight: 800; letter-spacing: -.04em; }
+.num span { color: #9fb0c6; font-size: 14px; }
+
+section { padding: 120px 0; }
+.label { color: var(--blue); font-weight: 700; font-size: 14px; letter-spacing: .06em; }
+.sec-title { font-size: clamp(30px, 3.8vw, 52px); letter-spacing: -.04em; line-height: 1.15; font-weight: 800; margin: 12px 0 48px; }
+
+/* 공정 타임라인: 스크롤하면 선이 그려짐 */
+.timeline { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 23px; height: 2px; background: var(--line); }
+.timeline .bar { position: absolute; left: 0; top: 23px; height: 2px; background: var(--blue); width: 0; transition: width 1.8s cubic-bezier(.2,.8,.2,1); }
+.timeline.in .bar { width: 100%; }
+.t-step .dot { width: 48px; height: 48px; border-radius: 50%; background: var(--paper); border: 2px solid var(--line); display: grid; place-items: center; font-weight: 800; color: var(--muted); position: relative; transition: border-color .4s, color .4s, background .4s; }
+.timeline.in .t-step .dot { border-color: var(--blue); color: #fff; background: var(--blue); }
+.t-step img { margin: 24px 0 16px; border-radius: 12px; aspect-ratio: 4/3; object-fit: cover; width: 100%; }
+.t-step h3 { font-size: 19px; letter-spacing: -.02em; }
+.t-step p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 6px; }
+
+/* 실적 카드 */
+.filters { display: flex; gap: 8px; margin: -24px 0 32px; flex-wrap: wrap; }
+.filters button { border: 1px solid var(--line); background: var(--paper); padding: 9px 16px; border-radius: 99px; font: inherit; font-size: 14px; cursor: pointer; }
+.filters button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.card { background: var(--paper); border-radius: 16px; overflow: hidden; border: 1px solid var(--line); transition: transform .4s, box-shadow .4s; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(14,27,44,.12); }
+.card .ph { aspect-ratio: 16/11; overflow: hidden; }
+.card img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
+.card:hover img { transform: scale(1.05); }
+.card .body { padding: 20px 22px 24px; }
+.card .chips { display: flex; gap: 6px; margin-bottom: 10px; }
+.card .chips span { font-size: 12px; background: #eef2f7; color: var(--muted); padding: 4px 8px; border-radius: 6px; }
+.card h3 { font-size: 18px; letter-spacing: -.02em; line-height: 1.4; }
+.card time { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; }
+
+.contact { background: var(--paper); border-top: 1px solid var(--line); }
+.contact .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.contact h2 { font-size: clamp(30px, 3.6vw, 48px); letter-spacing: -.04em; line-height: 1.2; }
+.contact dl { display: grid; grid-template-columns: 80px 1fr; gap: 14px 16px; font-size: 17px; }
+.contact dt { color: var(--muted); }
+.contact dd b { font-size: 26px; letter-spacing: -.02em; }
+.copy { margin-left: 8px; font: inherit; font-size: 12px; border: 1px solid var(--line); background: var(--bg); padding: 4px 8px; border-radius: 6px; cursor: pointer; }
+footer { padding: 40px 0 110px; color: var(--muted); font-size: 13px; line-height: 1.9; border-top: 1px solid var(--line); }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s, transform .8s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+.mock-note { position: fixed; left: 12px; bottom: 12px; z-index: 60; font-size: 11px; background: #0e1b2ccc; color: #fff; padding: 4px 8px; border-radius: 4px; }
+.mobile-bar { display: none; }
+@media (max-width: 860px) {
+  .menu { display: none; }
+  .hero { padding: 40px 0 64px; }
+  .hero .wrap, .contact .wrap { grid-template-columns: 1fr; }
+  .numbers .wrap { grid-template-columns: repeat(2, 1fr); }
+  .timeline { grid-template-columns: 1fr; gap: 28px; }
+  .timeline::before, .timeline .bar { display: none; }
+  .cards { grid-template-columns: 1fr; }
+  section { padding: 80px 0; }
+  .mobile-bar { display: flex; gap: 8px; position: fixed; inset: auto 12px 12px; z-index: 50; }
+  .mobile-bar a { flex: 1; padding: 16px; text-align: center; font-weight: 800; border-radius: 12px; background: var(--blue); color: #fff; box-shadow: 0 10px 30px rgba(31,94,255,.35); }
+  .mobile-bar a + a { background: var(--navy); box-shadow: none; }
+  .mock-note { bottom: auto; top: 80px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .hero-img { clip-path: none; } .hero-img img { transform: none; } .badge { opacity: 1; transform: none; }
+  .reveal { opacity: 1; transform: none; } .timeline .bar { width: 100%; }
+}
+</style>
+</head>
+<body>
+<div class="mock-note">시안 B · 블루프린트 (임시 사진: 원본 미보정)</div>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#"><svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#1f5eff"/><path d="M6 20 L13 9 L17 15 L19.5 12 L23 20 Z" fill="#fff"/></svg>시온건설</a>
+    <nav class="menu"><a href="#">회사소개</a><a href="#services">사업분야</a><a href="#projects">시공실적</a><a href="#contact">문의하기</a></nav>
+    <a class="call" href="tel:029600890">02-960-0890</a>
+  </div>
+</header>
+
+<section class="hero grid-bg" style="padding-top:72px">
+  <div class="wrap">
+    <div>
+      <span class="tag">사면 · 지반 보강 전문건설</span>
+      <h1>위험한 사면을<br><mark>안전한 땅</mark>으로</h1>
+      <p>2003년부터 천공, 와이어메쉬, 록볼트, 숏크리트까지 사면보강 전 공정을 직접 시공해 온 주식회사 시온건설입니다.</p>
+      <div class="btns"><a class="btn primary" href="#contact">견적 문의하기</a><a class="btn ghost" href="#projects">시공실적 보기</a></div>
+    </div>
+    <div class="hero-img">
+      <img src="assets/project-a02-046-07.jpg" alt="인천발전소 사면에 와이어메쉬를 설치한 모습">
+      <div class="badge"><b>70+</b><span>공개된<br>시공실적</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="numbers">
+  <div class="wrap">
+    <div class="num reveal"><b><span data-count="2003">2003</span></b><span>설립</span></div>
+    <div class="num reveal"><b><span data-count="70">0</span>+</b><span>시공실적</span></div>
+    <div class="num reveal"><b>토공 · 보링</b><span>전문건설업 면허</span></div>
+    <div class="num reveal"><b>여성기업</b><span>2024 인증</span></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="label reveal">SERVICES</div>
+    <h2 class="sec-title reveal">사면보강 5단계,<br>처음부터 끝까지 한 팀이</h2>
+    <div class="timeline" id="tl">
+      <div class="bar"></div>
+      <div class="t-step"><div class="dot">1</div><img src="assets/business-03.jpg" alt=""><h3>스카이드릴 천공</h3><p>고소 천공 장비로 급경사면 정밀 천공</p></div>
+      <div class="t-step"><div class="dot">2</div><img src="assets/business-04.jpg" alt=""><h3>와이어메쉬 설치</h3><p>사면 표층을 철망으로 고정</p></div>
+      <div class="t-step"><div class="dot">3</div><img src="assets/business-05.jpg" alt=""><h3>록볼트 · 배수공</h3><p>록볼트 체결과 배수공 설치</p></div>
+      <div class="t-step"><div class="dot">4</div><img src="assets/business-06.jpg" alt=""><h3>대형 숏크리트 타설</h3><p>대형 머신으로 넓은 면 신속 타설</p></div>
+      <div class="t-step"><div class="dot">5</div><img src="assets/business-07.jpg" alt=""><h3>타설 완료</h3><p>균일한 두께로 마감</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="padding-top:0">
+  <div class="wrap">
+    <div class="label reveal">PROJECTS</div>
+    <h2 class="sec-title reveal">최근 시공실적</h2>
+    <div class="filters"><button class="on">전체</button><button>사면보강</button><button>숏크리트</button><button>가시설</button><button>그라우팅</button></div>
+    <div class="cards">
+      <a class="card reveal" href="#"><div class="ph"><img src="assets/project-a02-068-01.jpg" alt=""></div><div class="body"><div class="chips"><span>숏크리트</span><span>충북 충주</span></div><h3>충주 활옥동굴 천단부 보강공사</h3><time>2026.11</time></div></a>
+      <a class="card reveal" href="#"><div class="ph"><img src="assets/project-a02-067-04.jpg" alt=""></div><div class="body"><div class="chips"><span>사면보강</span><span>인천</span></div><h3>포스코인터내셔널 인천발전소 사면보강 (3차)</h3><time>2026.07</time></div></a>
+      <a class="card reveal" href="#"><div class="ph"><img src="assets/project-a02-061-01.png" alt=""></div><div class="body"><div class="chips"><span>가시설</span><span>서울</span></div><h3>삼육서울병원 증축현장</h3><time>2025.12</time></div></a>
+      <a class="card reveal" href="#"><div class="ph"><img src="assets/project-a02-060-01.png" alt=""></div><div class="body"><div class="chips"><span>사면보강</span><span>경기 용인</span></div><h3>용인 이스트팰리스 래미안 유출사면보강</h3><time>2025.11</time></div></a>
+      <a class="card reveal" href="#"><div class="ph"><img src="assets/project-a02-059-01.jpg" alt=""></div><div class="body"><div class="chips"><span>숏크리트</span><span>경남</span></div><h3>함양-창녕간 고속도로 신설현장</h3><time>2025.09</time></div></a>
+      <a class="card reveal" href="#"><div class="ph"><img src="assets/project-a02-056-01.png" alt=""></div><div class="body"><div class="chips"><span>숏크리트</span><span>전북 무주</span></div><h3>한국농어촌공사 무주현장</h3><time>2025.04</time></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2 class="reveal">공내역서와 연락처를<br>보내주시면 상세 견적을<br>회신드립니다.</h2>
+    <dl class="reveal">
+      <dt>대표전화</dt><dd><b><a href="tel:029600890">02-960-0890</a></b></dd>
+      <dt>휴대폰</dt><dd><a href="tel:01077730895">010-7773-0895</a></dd>
+      <dt>팩스</dt><dd>02-3295-0891</dd>
+      <dt>이메일</dt><dd>sion5964@naver.com <button class="copy" data-copy="sion5964@naver.com">복사</button></dd>
+      <dt>주소</dt><dd>서울 성북구 한천로 66길 189, 브룩스톤 오피스텔 307호</dd>
+    </dl>
+  </div>
+</section>
+<footer><div class="wrap">© 주식회사 시온건설 · 등록번호 209-81-52064</div></footer>
+<div class="mobile-bar"><a href="tel:029600890">전화 문의</a><a href="#contact">이메일 문의</a></div>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const io = new IntersectionObserver((es) => es.forEach((e) => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in');
+  e.target.querySelectorAll('[data-count]').forEach(countUp);
+  io.unobserve(e.target);
+}), { threshold: .2 });
+document.querySelectorAll('.reveal, #tl').forEach((el) => {
+  const sib = [...el.parentElement.children].filter((c) => c.classList.contains('reveal'));
+  el.style.transitionDelay = Math.max(0, sib.indexOf(el)) * 80 + 'ms';
+  io.observe(el);
+});
+function countUp(el) {
+  const to = +el.dataset.count, from = to > 1000 ? to - 23 : 0;
+  if (reduce) { el.textContent = to; return; }
+  const t0 = performance.now();
+  const tick = (t) => { const p = Math.min((t - t0) / 1400, 1); el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+}
+// 이메일 복사 버튼
+document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = '복사됨'; } catch { b.textContent = '직접 복사해 주세요'; }
+  setTimeout(() => (b.textContent = '복사'), 1600);
+}));
+// 필터 버튼(시안용 모양만)
+document.querySelectorAll('.filters button').forEach((b) => b.addEventListener('click', () => {
+  document.querySelectorAll('.filters button').forEach((x) => x.classList.remove('on')); b.classList.add('on');
+}));
+</script>
+</body>
+</html>
