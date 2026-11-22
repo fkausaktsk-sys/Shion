@@ -51,6 +51,7 @@ const csv = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
 async function main() {
   await fs.mkdir(OUT, { recursive: true });
   const seen = new Map();
+  const map = {}; // "게시판/글번호/img-NN.jpg" → images-original 파일명 (콘텐츠 변환에서 사용)
   const rows = [['file', 'group', 'board', 'wr_id', 'title', 'date', 'width', 'height', 'kb', 'role', 'note', 'same_as']];
   for (const [bo, [prefix, group]] of Object.entries(NAMES)) {
     const dir = path.join(BACKUP, bo);
@@ -63,12 +64,14 @@ async function main() {
         const src = path.join(dir, String(id), img.file);
         const buf = await fs.readFile(src);
         const hash = crypto.createHash('sha1').update(buf).digest('hex');
-        if (seen.has(hash)) continue; // 같은 이미지는 한 번만
+        const key = `${bo}/${id}/${img.file}`;
+        if (seen.has(hash)) { map[key] = seen.get(hash); continue; } // 같은 이미지는 한 번만
         n++;
         const name = group === '시공'
           ? `${prefix}-${String(id).padStart(3, '0')}-${String(n).padStart(2, '0')}${path.extname(img.file)}`
           : `${prefix}-${String(n).padStart(2, '0')}${path.extname(img.file)}`;
         seen.set(hash, name);
+        map[key] = name;
         await fs.copyFile(src, path.join(OUT, name));
         const [w, h] = imageSize(buf);
         const role = group === '시공' ? (n === 1 ? '대표사진' : '본문') : '회사소개';
@@ -78,6 +81,7 @@ async function main() {
   }
   // 엑셀에서 한글이 깨지지 않도록 BOM을 붙인다
   await fs.writeFile(path.join(OUT, 'list.csv'), '﻿' + rows.map((r) => r.map(csv).join(',')).join('\r\n'));
+  await fs.writeFile(path.join(OUT, 'map.json'), JSON.stringify(map, null, 2));
   const total = rows.length - 1;
   console.log(`이미지 ${total}장을 images-original/ 에 정리했습니다.`);
 }

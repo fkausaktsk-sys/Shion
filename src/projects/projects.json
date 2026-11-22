@@ -1,0 +1,6 @@
+{
+  "layout": "layouts/project.njk",
+  "permalink": "/projects/{{ page.fileSlug }}/",
+  "sectionPrefix": "/projects/",
+  "activeSub": "/projects/"
+}

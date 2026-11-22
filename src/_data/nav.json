@@ -1,0 +1,36 @@
+[
+  {
+    "title": "회사소개", "url": "/company/greeting/", "prefix": "/company/",
+    "children": [
+      { "title": "인사말", "url": "/company/greeting/" },
+      { "title": "회사연혁", "url": "/company/history/" },
+      { "title": "사훈", "url": "/company/motto/" },
+      { "title": "면허·등록증", "url": "/company/licenses/" },
+      { "title": "보유장비", "url": "/company/equipment/" },
+      { "title": "오시는길", "url": "/company/location/" }
+    ]
+  },
+  {
+    "title": "사업분야", "url": "/services/", "prefix": "/services/",
+    "children": [
+      { "title": "주요사업", "url": "/services/" },
+      { "title": "취급공종", "url": "/services/scope/" },
+      { "title": "숏크리트 소개", "url": "/services/shotcrete/" }
+    ]
+  },
+  {
+    "title": "시공실적", "url": "/projects/", "prefix": "/projects/",
+    "children": [
+      { "title": "시공사진", "url": "/projects/" },
+      { "title": "시공동영상", "url": "/projects/videos/" },
+      { "title": "시공사례", "url": "/projects/records/" }
+    ]
+  },
+  {
+    "title": "문의하기", "url": "/contact/", "prefix": "/contact/",
+    "children": [
+      { "title": "견적문의", "url": "/contact/" },
+      { "title": "오시는길", "url": "/company/location/" }
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+---
+title: 사훈
+heading: 우리의 다짐
+permalink: /company/motto/
+description: 주식회사 시온건설의 사훈, 우리의 다짐입니다.
+motto:
+  - { k: "계획은", v: "현장에서 고민하자!" }
+  - { k: "준비는", v: "안전부터!" }
+  - { k: "실행은", v: "말보다 행동으로!" }
+  - { k: "일은", v: "즐기자!" }
+---
+<div class="process" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+  {%- for m in motto %}
+  <div class="step reveal" style="min-height:300px">
+    <div class="no">0{{ loop.index }}</div>
+    <h3 style="font-size:28px;color:var(--muted)">{{ m.k }}</h3>
+    <p style="font-size:clamp(26px,2.6vw,34px);font-weight:800;letter-spacing:-.03em;color:var(--text);line-height:1.25">{{ m.v }}</p>
+  </div>
+  {%- endfor %}
+</div>

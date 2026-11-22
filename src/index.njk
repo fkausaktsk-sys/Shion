@@ -1,0 +1,57 @@
+---
+layout: layouts/base.njk
+isHome: true
+---
+<section class="hero">
+  <div class="hero-img">{% img "project-a02-044-01.jpg", "고소작업차에서 사면에 숏크리트를 타설하는 모습", "", "100vw", true %}</div>
+  <div class="wrap">
+    <div class="eyebrow">Slope &amp; Ground Reinforcement · Since {{ site.since }}</div>
+    <h1><span class="ln"><span>무너지지 않는</span></span><span class="ln"><span>땅을 만드는</span></span><span class="ln"><span>시온건설</span></span></h1>
+    <p>스카이드릴 천공부터 대형 숏크리트 타설까지, 사면·지반 보강 전 공정을 직접 시공합니다.</p>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">SCROLL</div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat reveal"><b><span data-count="{{ build.year - site.since }}">{{ build.year - site.since }}</span><em>년</em></b><span>현장 경험 ({{ site.since }}~)</span></div>
+    <div class="stat reveal"><b><span data-count="{{ records.length }}">{{ records.length }}</span><em>건</em></b><span>시공사례 (원·하도급 실적)</span></div>
+    <div class="stat reveal"><b>5<em>단계</em></b><span>사면보강 일괄 시공</span></div>
+    <div class="stat reveal"><b>전문<em>건설</em></b><span>토공사 · 보링그라우팅</span></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>천공에서 타설까지,<br>한 팀이 끝냅니다</h2>
+      <p>자체 장비와 숙련된 인력으로 공정 사이의 공백 없이 사면을 안정시킵니다. <a class="more" href="/services/">주요사업 보기 →</a></p>
+    </div>
+    <div class="process">
+      {%- for s in services %}
+      <div class="step reveal">{% img s.photo, "", "", "(max-width: 960px) 100vw, 20vw" %}<div class="no">{{ s.no }}</div><h3>{{ s.title }}</h3><p>{{ s.desc }}</p></div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>최근 시공실적</h2>
+      <a class="more" href="/projects/">전체 시공사진 보기 →</a>
+    </div>
+    <div class="projects-grid">
+      {%- for p in collections.photoProjects | limit(5) %}
+      <a class="card reveal" href="{{ p.url }}">{% img p.data.cover, p.data.title, "", ("(max-width: 960px) 100vw, 50vw" if loop.first else "(max-width: 960px) 100vw, 30vw") %}<div class="meta"><small>{{ p.date | ym }}{% if p.data.methods.length %} · {{ p.data.methods[0] }}{% endif %}</small><h3>{{ p.data.title }}</h3></div></a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="wrap">
+    <h2>현장 상황만 알려주세요.<br>견적은 저희가 뽑습니다.</h2>
+    <a class="tel" href="{{ site.tel | telHref }}">{{ site.tel }}</a>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+---
+layout: layouts/page.njk
+title: 시공사례
+eyebrow: 시공실적
+permalink: /projects/records/
+sectionPrefix: /projects/
+description: 시온건설이 2003년부터 수행한 공사 실적표입니다. 발주사와 공사명을 연도별로 정리했습니다.
+---
+<p class="lead reveal">{{ site.since }}년부터 지금까지 <em>{{ records.length }}건</em>의 공사를 수행했습니다.</p>
+{%- for g in records | byYear %}
+<div class="year-head reveal"><h2>{{ g.year }}</h2><span>{{ g.items.length }}건</span></div>
+<div class="table-wrap reveal">
+  <table>
+    <thead><tr><th scope="col">년/월</th><th scope="col">원수급사(발주사)</th><th scope="col">공사명</th><th scope="col">하수급사</th></tr></thead>
+    <tbody>
+      {%- for r in g.items %}
+      <tr><td class="ym">{{ r.ym }}</td><td>{{ r.client }}</td><td>{{ r.name }}</td><td style="color:var(--muted)">{{ r.contractor }}</td></tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>
+{%- endfor %}

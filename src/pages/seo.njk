@@ -1,0 +1,21 @@
+---
+pagination:
+  data: seoFiles
+  size: 1
+  alias: f
+permalink: "{{ f }}"
+eleventyExcludeFromCollections: true
+seoFiles: ["/sitemap.xml", "/robots.txt"]
+---
+{%- if f == "/robots.txt" -%}
+User-agent: *
+Allow: /
+Sitemap: {{ site.url }}/sitemap.xml
+{%- else -%}
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for p in collections.all %}{% if p.url and not p.data.noindex %}
+  <url><loc>{{ site.url }}{{ p.url }}</loc><lastmod>{{ p.date | iso }}</lastmod></url>
+{%- endif %}{% endfor %}
+</urlset>
+{%- endif %}

@@ -1,0 +1,18 @@
+---
+title: 오시는길
+permalink: /company/location/
+description: 주식회사 시온건설 오시는 길. 서울 성북구 한천로 66길 189 브룩스톤 오피스텔 307호.
+---
+<div class="contact-grid">
+  <div class="reveal">
+    <div class="map-box">{% img "company-map-02.jpg", "시온건설 위치 약도", "", "(max-width: 960px) 100vw, 50vw" %}</div>
+    <p style="margin-top:16px"><a class="more" href="{{ site.naverMap }}" target="_blank" rel="noopener">네이버 지도에서 보기 →</a></p>
+  </div>
+  <dl class="contact-list reveal">
+    <div class="contact-row"><dt>주소</dt><dd style="font-size:17px">{{ site.address }}</dd></div>
+    <div class="contact-row"><dt>지번</dt><dd style="font-size:15px;font-weight:500;color:var(--muted)">{{ site.addressOld }}</dd></div>
+    <div class="contact-row"><dt>대표전화</dt><dd class="big"><a href="{{ site.tel | telHref }}">{{ site.tel }}</a></dd></div>
+    <div class="contact-row"><dt>팩스</dt><dd>{{ site.fax }}</dd></div>
+    <div class="contact-row"><dt>이메일</dt><dd>{{ site.email }} <button class="copy-btn" type="button" data-copy="{{ site.email }}">복사</button></dd></div>
+  </dl>
+</div>

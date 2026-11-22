@@ -1,0 +1,25 @@
+---
+layout: layouts/page.njk
+title: 견적문의
+eyebrow: 문의하기
+permalink: /contact/
+intro: 전화 또는 이메일로 문의해 주세요.
+description: 시온건설 견적문의. 전화 02-960-0890 또는 이메일로 공내역서와 연락처를 보내주시면 상세 견적을 회신드립니다.
+---
+<div class="contact-grid">
+  <div class="reveal">
+    <p class="lead">공내역서와 연락처를 보내주시면<br><em>상세히 견적해 드립니다.</em></p>
+    <p class="prose" style="margin-top:28px">{{ site.inquiryNotice }}</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px">
+      <a class="btn" href="{{ site.tel | telHref }}">전화 걸기 {{ site.tel }}</a>
+      <button class="btn ghost" type="button" data-copy="{{ site.email }}">이메일 주소 복사</button>
+    </div>
+  </div>
+  <dl class="contact-list reveal">
+    <div class="contact-row"><dt>대표전화</dt><dd class="big"><a href="{{ site.tel | telHref }}">{{ site.tel }}</a></dd></div>
+    <div class="contact-row"><dt>휴대폰</dt><dd><a href="{{ site.mobile | telHref }}">{{ site.mobile }}</a></dd></div>
+    <div class="contact-row"><dt>팩스</dt><dd>{{ site.fax }}</dd></div>
+    <div class="contact-row"><dt>이메일</dt><dd>{{ site.email }} <button class="copy-btn" type="button" data-copy="{{ site.email }}">복사</button></dd></div>
+    <div class="contact-row"><dt>주소</dt><dd style="font-size:16px">{{ site.address }} <a class="copy-btn" href="/company/location/">오시는길</a></dd></div>
+  </dl>
+</div>

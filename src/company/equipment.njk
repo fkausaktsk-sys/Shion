@@ -1,0 +1,21 @@
+---
+title: 보유장비
+permalink: /company/equipment/
+intro: 자체 장비로 천공부터 타설까지 공정 사이의 공백 없이 시공합니다.
+description: 주식회사 시온건설이 보유한 스카이드릴, 숏크리트 머신, 콤프레샤 등 장비입니다.
+equipment:
+  - { file: "company-equipment-02.jpg", cap: "건식 숏크리트 장비 (알리바)" }
+  - { file: "company-equipment-03.jpg", cap: "스카이드릴 1호기 — 지하 탑다운 전용" }
+  - { file: "company-equipment-04.jpg", cap: "스카이드릴 2호기 — 사면타설 전용" }
+  - { file: "company-equipment-05.jpg", cap: "현장배합용 스쿠로 믹서기" }
+  - { file: "company-equipment-06.jpg", cap: "콤프레샤 (825 인가솔랜드)" }
+  - { file: "company-equipment-07.jpg", cap: "천공장비 (공압드릴)" }
+  - { file: "company-equipment-08.jpg", cap: "녹생토 아리바" }
+  - { file: "company-equipment-09.jpg", cap: "콤프레샤 (임대장비)" }
+  - { file: "company-equipment-10.jpg", cap: "26m 숏크리트 머신" }
+---
+<div class="gallery">
+  {%- for d in equipment %}
+  <figure class="reveal">{% img d.file, d.cap, "", "(max-width: 960px) 100vw, 33vw" %}<figcaption>{{ d.cap }}</figcaption></figure>
+  {%- endfor %}
+</div>

@@ -1,0 +1,30 @@
+---
+title: 취급공종
+permalink: /services/scope/
+intro: 전문건설업(토공사, 보링그라우팅) 면허를 바탕으로 아래 공종을 시공합니다.
+description: 시온건설 취급공종. 토공사와 사면보강(가시설, 숏크리트, 록볼트, 소일네일링, 녹생토·코아네트).
+scope:
+  - title: 토공사
+    items: ["가시설", "암파쇄(할암)"]
+  - title: 사면보강
+    items: ["가시설", "숏크리트(Shotcrete)", "록볼트(Rock bolt)", "소일네일링(Soil nailing)", "녹생토 · 코아네트"]
+  - title: 보링 · 그라우팅
+    items: ["석축 그라우팅 보강", "보링 그라우팅"]
+---
+<div class="process" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+  {%- for s in scope %}
+  <div class="step reveal" style="min-height:320px;justify-content:flex-start">
+    <div class="no">0{{ loop.index }}</div>
+    <h3 style="font-size:30px;margin:14px 0 20px">{{ s.title }}</h3>
+    <ul class="prose" style="padding-left:1.1em">{% for i in s.items %}<li>{{ i }}</li>{% endfor %}</ul>
+  </div>
+  {%- endfor %}
+</div>
+<div class="two-col reveal" style="margin-top:96px">
+  <div><div class="eyebrow">회사 정보</div></div>
+  <dl class="contact-list">
+    <div class="contact-row"><dt>상호</dt><dd>{{ site.name }}</dd></div>
+    <div class="contact-row"><dt>등록번호</dt><dd>{{ site.bizNumber }}</dd></div>
+    <div class="contact-row"><dt>면허</dt><dd>전문건설업 (토공사, 보링그라우팅)</dd></div>
+  </dl>
+</div>

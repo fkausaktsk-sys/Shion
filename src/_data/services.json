@@ -1,0 +1,7 @@
+[
+  { "no": "01", "title": "스카이드릴 천공", "photo": "business-03.jpg", "desc": "고소 천공 장비로 사람이 닿기 어려운 급경사 사면도 정확히 천공합니다." },
+  { "no": "02", "title": "와이어메쉬 설치", "photo": "business-04.jpg", "desc": "사면 전체에 철망(WIREMESH)을 고정해 표층의 붕괴와 낙석을 막습니다." },
+  { "no": "03", "title": "록볼트 · 배수공", "photo": "business-05.jpg", "desc": "록볼트(ROCKBOLT)를 체결해 지반을 묶고, 배수공으로 수압이 쌓이지 않게 합니다." },
+  { "no": "04", "title": "대형 숏크리트 타설", "photo": "business-06.jpg", "desc": "대형 숏크리트 머신으로 넓은 사면을 빠르고 고르게 타설합니다." },
+  { "no": "05", "title": "타설 완료", "photo": "business-07.jpg", "desc": "균일한 두께로 마감해 오래 견디는 사면을 만듭니다." }
+]

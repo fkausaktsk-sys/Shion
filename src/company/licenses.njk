@@ -1,0 +1,26 @@
+---
+title: 면허·등록증
+permalink: /company/licenses/
+description: 주식회사 시온건설의 건설업 등록증, 전문건설업 등록수첩, 기술경력증 등 면허와 증명서입니다.
+docs:
+  - { file: "company-license-02.jpg", cap: "사업자등록증, 전문건설협회 회원증" }
+  - { file: "company-license-03.jpg", cap: "건설업등록증" }
+  - { file: "company-license-04.jpg", cap: "전문건설업 등록수첩" }
+  - { file: "company-license-05.jpg", cap: "신용평가등급확인서" }
+  - { file: "company-license-06.jpg", cap: "여성기업확인서" }
+careers:
+  - { file: "company-career-02.jpg", cap: "토목기술경력증" }
+  - { file: "company-career-03.jpg", cap: "조경기술경력증" }
+---
+<div class="sec-head reveal" style="margin-bottom:32px"><h2 style="font-size:clamp(26px,3vw,40px)">회사등록증</h2></div>
+<div class="gallery docs">
+  {%- for d in docs %}
+  <figure class="reveal">{% img d.file, d.cap, "", "(max-width: 960px) 100vw, 33vw" %}<figcaption>{{ d.cap }}</figcaption></figure>
+  {%- endfor %}
+</div>
+<div class="sec-head reveal" style="margin:96px 0 32px"><h2 style="font-size:clamp(26px,3vw,40px)">기술경력증</h2></div>
+<div class="gallery docs">
+  {%- for d in careers %}
+  <figure class="reveal">{% img d.file, d.cap, "", "(max-width: 960px) 100vw, 50vw" %}<figcaption>{{ d.cap }}</figcaption></figure>
+  {%- endfor %}
+</div>

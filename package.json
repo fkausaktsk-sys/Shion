@@ -1,0 +1,16 @@
+{
+  "name": "shion-homepage",
+  "private": true,
+  "description": "주식회사 시온건설 홈페이지 (Eleventy 정적 사이트)",
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "backup": "node scripts/backup.mjs && node scripts/organize-images.mjs",
+    "convert": "node scripts/convert-content.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.8",
+    "@11ty/eleventy-img": "^7.1.1"
+  }
+}

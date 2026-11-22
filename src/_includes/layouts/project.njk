@@ -1,0 +1,27 @@
+---
+layout: layouts/page.njk
+eyebrow: 시공실적
+---
+{#- 시공 글 상세: 메타 정보, 동영상, 공정별 사진, 이전/다음 -#}
+{%- set list = collections.videoProjects if kind == "video" else collections.photoProjects %}
+{%- set listUrl = "/projects/videos/" if kind == "video" else "/projects/" %}
+<div class="detail-meta reveal">
+  <time datetime="{{ page.date | iso }}">{{ page.date | ymd }}</time>
+  {%- if methods.length %}<div class="chips">{% for m in methods %}<span>{{ m }}</span>{% endfor %}</div>{% endif %}
+  {%- if photoCount %}<span>사진 {{ photoCount }}장</span>{% endif %}
+</div>
+{%- if youtube %}
+<div class="video-frame reveal" style="margin-top:40px"><iframe src="{{ youtube }}" title="{{ title }} 동영상" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+{%- elif legacyVideo %}
+<div class="notice-box reveal" style="margin-top:40px">이 현장의 시공 동영상은 준비 중입니다.</div>
+{%- endif %}
+<div class="prose" style="margin-top:40px">
+{{ content | safe }}
+</div>
+{%- set idx = -1 %}
+{%- for p in list %}{% if p.url == page.url %}{% set idx = loop.index0 %}{% endif %}{% endfor %}
+<nav class="prev-next" aria-label="이전·다음 글">
+  <div>{% if idx > 0 %}{% set n = list[idx - 1] %}<a href="{{ n.url }}"><small>← 다음 글(최신)</small>{{ n.data.title }}</a>{% endif %}</div>
+  <a class="btn ghost list" href="{{ listUrl }}">목록으로</a>
+  <div class="next">{% if idx >= 0 and idx < list.length - 1 %}{% set n = list[idx + 1] %}<a href="{{ n.url }}"><small>이전 글 →</small>{{ n.data.title }}</a>{% endif %}</div>
+</nav>

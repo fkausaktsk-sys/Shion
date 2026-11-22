@@ -1,0 +1,21 @@
+---
+title: 주요사업
+permalink: /services/
+intro: 스카이드릴 천공부터 숏크리트 타설 완료까지, 사면보강 5단계를 자체 장비와 인력으로 일괄 시공합니다.
+description: 시온건설의 주요사업. 스카이드릴 천공, 와이어메쉬 설치, 록볼트·배수공, 대형 숏크리트 타설로 이어지는 사면보강 공정입니다.
+---
+<div style="display:grid;gap:120px">
+  {%- for s in services %}
+  <div class="two-col reveal" style="align-items:center">
+    <div class="photo" style="{% if loop.index is even %}order:2{% endif %}">{% img s.photo, s.title + " 작업 사진", "", "(max-width: 960px) 100vw, 45vw" %}</div>
+    <div>
+      <div class="eyebrow">STEP {{ s.no }}</div>
+      <h2 style="font-size:clamp(30px,4vw,52px);letter-spacing:-.04em;line-height:1.1;margin:14px 0 18px">{{ s.title }}</h2>
+      <p class="prose">{{ s.desc }}</p>
+    </div>
+  </div>
+  {%- endfor %}
+</div>
+<div style="margin-top:120px" class="reveal">
+  <p class="lead">공정별 실제 현장 사진은 <a class="more" href="/projects/">시공사진</a>에서 볼 수 있습니다.</p>
+</div>

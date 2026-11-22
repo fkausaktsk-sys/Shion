@@ -1,0 +1,35 @@
+---
+title: 회사연혁
+permalink: /company/history/
+description: 2003년 시온개발로 시작한 주식회사 시온건설의 연혁입니다.
+history:
+  - date: 2024년 09월
+    items: ["여성기업 면허 추가"]
+  - date: 2020년 02월
+    items: ["시온개발 개인사업자 추가"]
+  - date: 2019년 05월
+    items: ["서울 성북구 한천로 66길 189(석관동) 307호로 확장 이전"]
+  - date: 2015년 08월
+    items: ["전문건설업 면허 등록 — 종목: 토공사, 보링그라우팅"]
+  - date: 2015년 07월
+    items: ["직원 충원: 공사팀장(이재우), 공무팀장(최아름), 가시설반장(홍열호)"]
+  - date: 2015년 06월
+    items: ["순수 우리말로 상호 변경: 주식회사 시온건설", "종목: 토공사 및 보링그라우팅, 건설기계 임대업"]
+  - date: 2010년 10월
+    items: ["매출액 증가로 법인 사업자 전환 — 상호: (주)시온씨앤이", "업종: 건설업/토공사업, 보링 및 그라우팅, 건설기계임대", "주소: 서울 성북구 석관동 135-2 브룩스톤 오피스텔 308호", "발기인: 대표이사 전명섭, 사내이사 홍연화, 이사 김순남, 감사 장정자"]
+  - date: 2003년 05월
+    items: ["시온개발 개인 사업자로 시작", "업종: 건설업/사면보강", "주소: 서울 성북구 석관동 118-10", "설립자: 전명섭"]
+---
+<div class="two-col">
+  <div class="reveal">
+    <p class="lead">2003년 사면보강 한 분야로 시작해<br><em>{{ build.year - site.since }}년째</em> 현장을 지키고 있습니다.</p>
+  </div>
+  <div class="timeline">
+    {%- for h in history %}
+    <div class="tl-item reveal">
+      <time>{{ h.date }}</time>
+      <ul>{% for i in h.items %}<li>{{ i }}</li>{% endfor %}</ul>
+    </div>
+    {%- endfor %}
+  </div>
+</div>
