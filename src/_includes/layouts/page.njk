@@ -1,24 +1,30 @@
 ---
 layout: layouts/base.njk
 ---
-{#- 서브 페이지 공통: 상단 제목 + 같은 메뉴의 2뎁스 이동 -#}
+{#- 서브 페이지 공통: 사진 배너(반투명) + 2뎁스 탭 + 흰 콘텐츠 영역 -#}
 {%- set section = null %}
 {%- for m in nav %}{% if page.url | isActive(m.prefix) %}{% set section = m %}{% endif %}{% endfor %}
 {%- if not section and sectionPrefix %}{% for m in nav %}{% if m.prefix == sectionPrefix %}{% set section = m %}{% endif %}{% endfor %}{% endif %}
+{%- set bannerPhoto = heroPhoto or (section.heroPhoto if section) or site.ogImage %}
 <div class="page-hero">
+  <div class="bg">{% img bannerPhoto, "", "", "100vw", true %}</div>
   <div class="wrap">
     <div class="eyebrow">{{ eyebrow or (section.title if section) }}</div>
     <h1>{{ heading or title }}</h1>
     {%- if intro %}<p>{{ intro }}</p>{% endif %}
-    {%- if section %}
+  </div>
+</div>
+{%- if section %}
+<div class="subnav-bar">
+  <div class="wrap">
     <nav class="subnav" aria-label="{{ section.title }} 메뉴">
       {%- for c in section.children %}
       <a href="{{ c.url }}"{% if c.url == page.url or c.url == activeSub %} aria-current="page"{% endif %}>{{ c.title }}</a>
       {%- endfor %}
     </nav>
-    {%- endif %}
   </div>
 </div>
+{%- endif %}
 <div class="page-body">
   <div class="wrap">
 {{ content | safe }}

@@ -5,8 +5,18 @@ description: 주식회사 시온건설 오시는 길. 서울 성북구 한천로
 ---
 <div class="contact-grid">
   <div class="reveal">
-    <div class="map-box">{% img "company-map-02.jpg", "시온건설 위치 약도", "", "(max-width: 960px) 100vw, 50vw" %}</div>
-    <p style="margin-top:16px"><a class="more" href="{{ site.naverMap }}" target="_blank" rel="noopener">네이버 지도에서 보기 →</a></p>
+    {#- 네이버 지도 화면을 캡처해 넣음(지도 도구 부분은 잘라냄). 누르면 네이버 지도가 새 창으로 열림 -#}
+    <a class="map-box map-link" href="{{ site.naverMap }}" target="_blank" rel="noopener" aria-label="네이버 지도에서 시온건설 위치 보기 (새 창)">
+      <picture>
+        <source srcset="/assets/map-naver.webp" type="image/webp">
+        <img src="/assets/map-naver.jpg" width="1400" height="1026" alt="시온건설 위치 지도: 지하철 1·6호선 석계역 남쪽, 한천로 66길 189" loading="lazy" decoding="async">
+      </picture>
+      <span class="map-hint">네이버 지도 열기 ↗</span>
+    </a>
+    <p style="margin-top:14px;color:var(--body)">지하철 1·6호선 <strong>석계역</strong>에서 걸어서 오실 수 있습니다.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+      <a class="btn" href="{{ site.naverMap }}" target="_blank" rel="noopener">네이버 지도에서 보기</a>
+    </div>
   </div>
   <dl class="contact-list reveal">
     <div class="contact-row"><dt>주소</dt><dd style="font-size:17px">{{ site.address }}</dd></div>

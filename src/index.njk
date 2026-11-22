@@ -3,23 +3,29 @@ layout: layouts/base.njk
 isHome: true
 ---
 <section class="hero">
-  <div class="hero-img">{% img "project-a02-044-01.jpg", "고소작업차에서 사면에 숏크리트를 타설하는 모습", "", "100vw", true %}</div>
-  <div class="wrap">
-    <div class="eyebrow">Slope &amp; Ground Reinforcement · Since {{ site.since }}</div>
-    <h1><span class="ln"><span>무너지지 않는</span></span><span class="ln"><span>땅을 만드는</span></span><span class="ln"><span>시온건설</span></span></h1>
-    <p>스카이드릴 천공부터 대형 숏크리트 타설까지, 사면·지반 보강 전 공정을 직접 시공합니다.</p>
+  {#- 첫 화면 사진 두 장이 번갈아 나옴(천천히 확대되며 서서히 바뀜). 순서: main-hero-01 → main-hero -#}
+  <div class="hero-img">
+    <div class="slide is-active">{% img "main-hero-01.png", "크레인과 공사 중인 구조물 뒤로 고층 빌딩이 보이는 건설 현장", "", "100vw", true %}</div>
+    <div class="slide">{% img "main-hero.png", "크레인과 고층 빌딩이 보이는 맑은 하늘 아래 건설 현장", "", "100vw" %}</div>
   </div>
-  <div class="scroll-cue" aria-hidden="true">SCROLL</div>
+  <div class="wrap">
+    <div class="eyebrow">Shion Construct</div>
+    <h1><span class="ln"><span>기술과 장비, 그리고 경험으로</span></span><span class="ln"><span>가장 <em>단단한</em> 현장을 만듭니다</span></span></h1>
+    <p>주식회사 시온건설은 끊임없는 기술 개발과 앞선 장비, 풍부하고 다양한 시공 경험을 바탕으로 모든 현장에 최선을 다합니다.</p>
+    <p class="hero-en">Building solid ground with technology, equipment and experience.</p>
+  </div>
+  {#- 숫자 띠: 사진 아래쪽에 얇은 선으로 나눈 한 줄 (영문 라벨 + 숫자 + 설명) -#}
+  <div class="hero-facts">
+    <div class="wrap">
+      <dl>
+        <div class="fact"><dt>Since</dt><dd><b data-count="{{ site.since }}" data-from="{{ site.since - 20 }}">{{ site.since }}</b></dd><dd class="cap">{{ build.year - site.since }}년째 사면·지반 보강 한 길</dd></div>
+        <div class="fact"><dt>Projects</dt><dd><b data-count="{{ records.length }}">{{ records.length }}</b><small>건</small></dd><dd class="cap">원·하도급 공사 실적</dd></div>
+        <div class="fact"><dt>Site Records</dt><dd><b data-count="{{ collections.photoProjects.length }}">{{ collections.photoProjects.length }}</b><small>곳</small></dd><dd class="cap">공정별 시공 사진 기록</dd></div>
+        <div class="fact"><dt>Equipment</dt><dd><b data-count="9">9</b><small>종</small></dd><dd class="cap">스카이드릴 · 26m 숏크리트 머신 등 보유장비</dd></div>
+      </dl>
+    </div>
+  </div>
 </section>
-
-<div class="stats">
-  <div class="wrap">
-    <div class="stat reveal"><b><span data-count="{{ build.year - site.since }}">{{ build.year - site.since }}</span><em>년</em></b><span>현장 경험 ({{ site.since }}~)</span></div>
-    <div class="stat reveal"><b><span data-count="{{ records.length }}">{{ records.length }}</span><em>건</em></b><span>시공사례 (원·하도급 실적)</span></div>
-    <div class="stat reveal"><b>5<em>단계</em></b><span>사면보강 일괄 시공</span></div>
-    <div class="stat reveal"><b>전문<em>건설</em></b><span>토공사 · 보링그라우팅</span></div>
-  </div>
-</div>
 
 <section id="services">
   <div class="wrap">
@@ -29,13 +35,13 @@ isHome: true
     </div>
     <div class="process">
       {%- for s in services %}
-      <div class="step reveal">{% img s.photo, "", "", "(max-width: 960px) 100vw, 20vw" %}<div class="no">{{ s.no }}</div><h3>{{ s.title }}</h3><p>{{ s.desc }}</p></div>
+      <div class="step reveal"><div class="ph">{% img s.photo, s.title + " 작업 사진", "", "(max-width: 960px) 40vw, 20vw" %}</div><div class="tx"><div class="no">STEP {{ s.no }}</div><h3>{{ s.title }}</h3><p>{{ s.desc }}</p></div></div>
       {%- endfor %}
     </div>
   </div>
 </section>
 
-<section id="projects" style="padding-top:0">
+<section id="projects" class="surface">
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>최근 시공실적</h2>
@@ -50,6 +56,7 @@ isHome: true
 </section>
 
 <div class="cta">
+  <div class="cta-img">{% img "project-a02-046-07.jpg", "", "", "100vw" %}</div>
   <div class="wrap">
     <h2>현장 상황만 알려주세요.<br>견적은 저희가 뽑습니다.</h2>
     <a class="tel" href="{{ site.tel | telHref }}">{{ site.tel }}</a>
