@@ -286,8 +286,12 @@ td.ym { white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-
   .fact { padding: 18px 16px; }
   .fact:nth-child(3) { border-left: 0; padding-left: 0; }
   .fact:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,.16); }
-  .hero { min-height: 600px; height: 92svh; }
-  .hero > .wrap { padding-bottom: 32px; }
+  /* 높이를 고정하면 글이 위로 넘쳐 헤더 뒤로 숨으므로, 내용만큼 늘어나게 함 */
+  .hero { height: auto; min-height: calc(100svh - 57px); max-height: none; } /* 57px: 아래 고정 문의 막대 */
+  .hero > .wrap { flex: 1 0 auto; padding: calc(var(--header) + 48px) 0 40px; }
+  .hero h1 { font-size: clamp(27px, 7.2vw, 44px); margin: 20px 0; }
+  .hero p { font-size: 16px; line-height: 1.7; }
+  .fact dd.cap { font-size: 12.5px; line-height: 1.5; text-wrap: balance; }
   .hero .eyebrow { letter-spacing: .3em; }
   section { padding: 80px 0; }
   .sec-head { flex-direction: column; align-items: start; }
