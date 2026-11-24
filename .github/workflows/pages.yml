@@ -1,4 +1,5 @@
-# main에 올리면 사이트를 빌드해서 GitHub Pages(https://fkausaktsk-sys.github.io/shion/)에 올린다.
+# main에 올리면 사이트를 빌드해서 GitHub Pages(https://fkausaktsk-sys.github.io/Shion/)에 올린다.
+# 주소는 대소문자를 구분한다(저장소 이름이 Shion). 경로는 configure-pages가 알려주는 값을 쓴다.
 # 저장소 Settings > Pages > Source 를 "GitHub Actions" 로 바꿔야 동작한다.
 name: Deploy preview to GitHub Pages
 
@@ -28,6 +29,9 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      - id: pages
+        uses: actions/configure-pages@v5
 
       # 원본 사진(images-original/)은 git에 없어서, 옛 사이트에서 한 번 받아 캐시해 둔다.
       # 받기에 실패해도 빌드는 계속된다(사진 자리에 "사진 준비 중" 표시).
@@ -59,7 +63,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          PATH_PREFIX: /shion/
+          PATH_PREFIX: ${{ steps.pages.outputs.base_path }}/
 
       - uses: actions/upload-pages-artifact@v3
         with:

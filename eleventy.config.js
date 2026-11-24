@@ -4,7 +4,7 @@ import path from 'node:path';
 import Image from '@11ty/eleventy-img';
 import { HtmlBasePlugin } from '@11ty/eleventy';
 
-// GitHub Pages 미리보기는 주소가 /shion/ 아래라서 빌드할 때 PATH_PREFIX=/shion/ 을 준다 (평소엔 /)
+// GitHub Pages 미리보기는 주소가 /Shion/ 아래라서 빌드할 때 PATH_PREFIX=/Shion/ 을 준다 (평소엔 /)
 const PATH_PREFIX = process.env.PATH_PREFIX || '/';
 
 // 사진은 AI로 다듬은 images-final/ 을 먼저 쓰고, 없으면 images-original/ 을 쓴다(파일명이 같으면 자동 교체)
