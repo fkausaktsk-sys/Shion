@@ -2,6 +2,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import Image from '@11ty/eleventy-img';
+import { HtmlBasePlugin } from '@11ty/eleventy';
+
+// GitHub Pages 미리보기는 주소가 /shion/ 아래라서 빌드할 때 PATH_PREFIX=/shion/ 을 준다 (평소엔 /)
+const PATH_PREFIX = process.env.PATH_PREFIX || '/';
 
 // 사진은 AI로 다듬은 images-final/ 을 먼저 쓰고, 없으면 images-original/ 을 쓴다(파일명이 같으면 자동 교체)
 function findPhoto(name) {
@@ -46,6 +50,10 @@ async function photoUrl(name, width = 1200) {
 }
 
 export default function (eleventyConfig) {
+  // 링크·이미지 주소(/...) 앞에 PATH_PREFIX를 자동으로 붙인다
+  eleventyConfig.addPlugin(HtmlBasePlugin);
+  // 미리보기 사이트는 검색엔진에 안 걸리게 (base.njk에서 noindex)
+  eleventyConfig.addGlobalData('preview', PATH_PREFIX !== '/');
   eleventyConfig.addPassthroughCopy({ 'src/assets': 'assets' });
   eleventyConfig.addWatchTarget('images-final/');
 
@@ -83,6 +91,7 @@ export default function (eleventyConfig) {
 }
 
 export const config = {
+  pathPrefix: PATH_PREFIX,
   dir: { input: 'src', output: '_site', includes: '_includes', data: '_data' },
   markdownTemplateEngine: 'njk',
   htmlTemplateEngine: 'njk',

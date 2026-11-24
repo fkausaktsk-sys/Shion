@@ -1,0 +1,76 @@
+# main에 올리면 사이트를 빌드해서 GitHub Pages(https://fkausaktsk-sys.github.io/shion/)에 올린다.
+# 저장소 Settings > Pages > Source 를 "GitHub Actions" 로 바꿔야 동작한다.
+name: Deploy preview to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # 원본 사진(images-original/)은 git에 없어서, 옛 사이트에서 한 번 받아 캐시해 둔다.
+      # 받기에 실패해도 빌드는 계속된다(사진 자리에 "사진 준비 중" 표시).
+      - name: Restore original photos cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            backup
+            images-original
+          key: original-photos-${{ hashFiles('scripts/backup.mjs', 'scripts/organize-images.mjs') }}
+
+      - name: Download original photos (first run only)
+        continue-on-error: true
+        run: |
+          if [ ! -d images-original ] || [ -z "$(ls -A images-original 2>/dev/null)" ]; then
+            npm run backup
+          else
+            echo "캐시된 원본 사진을 씁니다."
+          fi
+
+      # 사진 크기 변환 결과도 캐시해서 다음 빌드를 빠르게
+      - name: Restore resized image cache
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: eleventy-img-${{ github.run_id }}
+          restore-keys: eleventy-img-
+
+      - name: Build
+        run: npm run build
+        env:
+          PATH_PREFIX: /shion/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
